@@ -1,6 +1,8 @@
 package sys.jp.persona.model;
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +22,10 @@ public class Persona {
 	private int edad;
 	
 	@ManyToOne
-	@JoinColumn (name = "id_pais")
+	@JoinColumn(name="id_pais")
 	private Pais pais;
-	@JoinColumn (name = "id_estado")
+	@ManyToOne
+	@JoinColumn (name="id_estado")
 	private Estado estado;
 	
 	public int getId() {
@@ -61,6 +64,7 @@ public class Persona {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+	
 	
 	public Persona(String nombre, String apellido, int edad, Pais pais, Estado estado) {
 		super();

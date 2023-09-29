@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
 
   personaForm: FormGroup;
   paises: any;
+  estados: any;
 
   constructor(
     public fb: FormBuilder,
@@ -38,7 +39,6 @@ export class AppComponent implements OnInit{
 
     this.paisesService.getAllPaises().subscribe(resp => {
       this.paises = resp;
-      console.log(resp)
     },
     error => {console.log(error)})
   }
@@ -48,4 +48,14 @@ export class AppComponent implements OnInit{
   guardar():void{
 
   }
+  
+  cargarEstadosPorPaisesId(event:any){
+    this.estadosService.getAllEstadosByPais(event.target.value).subscribe(resp=>{
+      this.estados = resp
+    }, error=>{
+      console.log(error)
+    })
+
+  }
+
 }

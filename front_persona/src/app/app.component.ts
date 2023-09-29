@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   title = 'front_persona';
 
   personaForm: FormGroup;
+  paises: any;
 
   constructor(
     public fb: FormBuilder,
@@ -34,7 +35,15 @@ export class AppComponent implements OnInit{
       pais : ['', Validators.required],
       estado : ['', Validators.required],
     })
+
+    this.paisesService.getAllPaises().subscribe(resp => {
+      this.paises = resp;
+      console.log(resp)
+    },
+    error => {console.log(error)})
   }
+
+  
 
   guardar():void{
 

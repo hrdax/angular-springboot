@@ -15,6 +15,9 @@ public class Pais {
 	private String nombre;
 	
 	
+	public Pais() {
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -14,9 +15,13 @@ public class Estado {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@ManyToOne
+	@JoinColumn(name="id_pais")
 	private Pais pais;
 	private String nombre;
 	
+	
+	public Estado() {
+	}
 	
 	public int getId() {
 		return id;

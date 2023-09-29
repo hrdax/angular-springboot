@@ -65,6 +65,8 @@ public class Persona {
 		this.estado = estado;
 	}
 	
+	public Persona() {
+	}
 	
 	public Persona(String nombre, String apellido, int edad, Pais pais, Estado estado) {
 		super();

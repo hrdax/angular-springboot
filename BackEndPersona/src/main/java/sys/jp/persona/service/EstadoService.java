@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.Id;
 import sys.jp.persona.model.Estado;
 import sys.jp.persona.repository.EstadoRepository;
 
@@ -25,6 +26,17 @@ public class EstadoService implements EstadoRepository{
 	public void flush() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public List<Estado> findAllByCountry (int id) {
+		List<Estado> estadosRespuesta = null;
+		List<Estado> estados = estadoRepository.findAll();
+		for (int i=0; i < estados.size(); i++) {
+			if (estados.get(i).getPais().getId()==id) {
+				estadosRespuesta.add(estados.get(i));
+			}
+		}
+		return estadosRespuesta;
 	}
 
 	@Override

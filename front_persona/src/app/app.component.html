@@ -25,7 +25,7 @@
                 <option [ngValue]="item" *ngFor="let item of estados">{{item.nombre}}</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="personaForm.invalid">Guardar</button>
 
     </form>
 </div>
@@ -49,6 +49,12 @@
                 <td>{{item.edad}}</td>
                 <td>{{item.pais.nombre}}</td>
                 <td>{{item.estado.nombre}}</td>
+                <td>
+                    <button type="button" class="btn btn-success">Editar</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
         </tbody>
     </table>
 </div>

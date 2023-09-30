@@ -41,21 +41,22 @@ export class AppComponent implements OnInit{
       this.paises = resp;
     },
     error => {console.log(error)})
+
+    this.personaForm.get('pais')?.valueChanges.subscribe(value =>  {
+      this.estadosService.getAllEstadosByPais(value.id).subscribe(resp=>{
+        this.estados = resp
+      }, error=>{
+        console.log(error)
+      })
+    })
   }
 
   
 
   guardar():void{
-
-  }
-  
-  cargarEstadosPorPaisesId(event:any){
-    this.estadosService.getAllEstadosByPais(event.target.value).subscribe(resp=>{
-      this.estados = resp
-    }, error=>{
-      console.log(error)
-    })
-
+    this.personaService.savePersona(this.personaForm.value).subscribe(resp => {
+    },
+    error => {console.error(error)})
   }
 
 }

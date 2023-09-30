@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
   personaForm: FormGroup;
   paises: any;
   estados: any;
-  persona: any;
+  personas: any;
 
   constructor(
     public fb: FormBuilder,
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.personaForm = this.fb.group({
+      id: [''],
       nombre : ['', Validators.required],
       apellido : ['', Validators.required],
       edad : ['', Validators.required],
@@ -44,7 +45,7 @@ export class AppComponent implements OnInit{
     error => {console.log(error)})
 
     this.personaService.getAllPersonas().subscribe(resp => {
-      this.persona = resp;
+      this.personas = resp;
     },
     error => {console.log(error)})
 
@@ -62,9 +63,27 @@ export class AppComponent implements OnInit{
   guardar():void{
     this.personaService.savePersona(this.personaForm.value).subscribe(resp => {
       this.personaForm.reset()
-      this.persona.push(resp)
+      this.personas.push(resp)
     },
     error => {console.error(error)})
   }
 
+  eliminar(persona:any) {
+    this.personaService.deletePersona(persona.id).subscribe(resp => {
+      this.personas.pop(persona)
+
+    },
+    error => {console.error(error)})
+  }
+
+  editar(persona:any) {
+    this.personaForm.setValue({
+      id : persona.id,
+      nombre : persona.nombre,
+      apellido : persona.apellido,
+      edad : persona.edad,
+      pais : persona.pais,
+      estado : persona.estado,
+    })
+  }
 }

@@ -30,4 +30,27 @@
     </form>
 </div>
 
+<div class="formularioRegistro">
+    <h2>Personas registradas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Pais</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of persona">
+                <td>{{item.nombre}}</td>
+                <td>{{item.apellido}}</td>
+                <td>{{item.edad}}</td>
+                <td>{{item.pais.nombre}}</td>
+                <td>{{item.estado.nombre}}</td>
+        </tbody>
+    </table>
+</div>
+
 <router-outlet></router-outlet>
